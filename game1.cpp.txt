@@ -1,0 +1,133 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+int Roundem(int form, int to) {
+	int Roun = rand() % (to - form + 1) + form;
+	return Roun;
+}
+bool Check() {
+	char Ch;
+	cout << "Plet Agen? (Y/N)\n";
+	cin >> Ch;
+	if (Ch == 'Y' || Ch == 'y') {
+		return true;
+	}
+	else if (Ch == 'N' || Ch == 'n') {
+		return false;
+	}
+	else {
+		cout << "Enter Right Value\n";
+		return Check();
+	}
+}
+void Roundes() {
+	short  Y = 0, G = 0, R = 0;
+	short key;
+	short OpUser, OpComputer;
+	cout << "How many rounds do you want to play?\n";
+	cin >> key;
+	for (int i = 0; i < key; i++) {
+		cout << "Round[" << i + 1 << "] is begging: \n";
+		cout << "Enter your choice of stone[1], paper[2], or scissors[3]\n";
+		cin >> OpUser;
+		OpComputer = Roundem(1,3);
+		switch (OpComputer)
+		{
+		case 1:
+			cout << "Computer: Stone\n";
+			break;
+		case 2:
+			cout << "Computer: paper\n";
+			break;
+		case 3:
+			cout << "Computer: scissors\n";
+			break;
+		}
+		switch (OpUser)
+		{
+		case 1:
+			cout << "User: Stone\n";
+			break;
+		case 2:
+			cout << "User: paper\n";
+			break;
+		case 3:
+			cout << "User: scissors\n";
+			break;
+		}
+
+		if (OpComputer == OpUser) {
+			system("color 6");
+			cout << "Tie\n";
+			Y++;
+			cout << "_______________________________________________________________________________\n";
+		}
+		else if (OpUser == 1 && OpComputer == 2) {
+			system("color 4");
+			cout << "Computer Winer\n";
+			R++;
+			cout << "_______________________________________________________________________________\n";
+		}
+		else if (OpUser == 1 && OpComputer == 3) {
+			system("color 2");
+			cout << "Is Winer\n";
+			G++;
+			cout << "_______________________________________________________________________________\n";
+		}
+		else if (OpUser == 2 && OpComputer == 1) {
+			system("color 2");
+			cout << "Is Winer\n";
+			G++;
+			cout << "_______________________________________________________________________________\n";
+		}
+		else if (OpUser == 2 && OpComputer == 3) {
+			system("color 4");
+			cout << "Computer Winer\n";
+			R++;
+			cout << "_______________________________________________________________________________\n";
+		}
+		else if (OpUser == 3 && OpComputer == 1) {
+			system("color 4");
+			cout << "Computer Winer\n";
+			R++;
+			cout << "_______________________________________________________________________________\n";
+		}
+		else if (OpUser == 3 && OpComputer == 2) {
+			system("color 2");
+			cout << "Is Winer\n";
+			G++;
+			cout << "_______________________________________________________________________________\n";
+		}
+	}
+	cout << "_______________________________________________________________________________\n";
+	cout << "			  GAME OVER\n";
+	cout << "_______________________________________________________________________________\n";
+	cout << "The Tie: " << Y << endl;
+	cout << "The Computer Winer: " << R << endl;
+	cout << "The you Winer: " << G << endl;
+	cout << "_______________________________________________________________________________\n";
+	if (G > R && G > Y) {
+		cout << "WENIER\n";
+		system("color 2");
+	}
+	else if (R > G && R > Y) {
+		cout << "COMPUTER WINER\n";
+		system("color 4");
+	}
+	else {
+		cout << "TIE\n";
+		system("color 6");
+	}
+	cout << "_______________________________________________________________________________\n";
+}
+void Game() {
+	
+	do {
+		Roundes();
+	} while (Check());
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	Game();
+}
